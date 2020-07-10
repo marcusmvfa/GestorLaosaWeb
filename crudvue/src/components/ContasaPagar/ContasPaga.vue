@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="row">
-      <table class="table table-responsive">
+      <table class="table">
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
@@ -58,40 +58,40 @@ export default {
   methods: {
     getList() {
       axios.get("http://localhost:3000/listContasAPagar").then(response => {
-        this.lstContas = response.data;
-        console.log(response.data);
-      });
+      this.lstContas = response.data;
+      console.log(response.data);
+    });
     },
     dataFormatada(data) {
       return moment(data).format("DD/MM/YYYY");
     },
     editContaAPagar(id) {
-      this.$router.push({ path: `/formcontaapagar/${id}`, params: { id: id } });
+      this.$router.push({ path: `/formcontaapagar/${id}`, params: {id: id} });
     },
     showDeleteConfirm(id) {
-      this.$bvModal
-        .msgBoxConfirm("Você deseja realmente excluir este registro?", {
-          title: "Confirmação",
-          size: "sm",
-          buttonSize: "sm",
-          okVariant: "danger",
-          okTitle: "Sim",
-          cancelTitle: "Não",
-          footerClass: "p-2",
+      this.$bvModal.msgBoxConfirm('Você deseja realmente excluir este registro?', {
+        title: 'Confirmação',
+          size: 'sm',
+          buttonSize: 'sm',
+          okVariant: 'danger',
+          okTitle: 'Sim',
+          cancelTitle: 'Não',
+          footerClass: 'p-2',
           hideHeaderClose: false,
           centered: true
         })
-        .then(value => {
-          if (value == true) this.deleteConta(id);
-        });
+          .then(value => {
+            if(value == true)
+              this.deleteConta(id);
+          });
+
     },
-    deleteConta(id) {
-      axios
-        .delete(`http://localhost:3000/deleteContaAPagar/${id}`)
-        .then(res => {
-          console.log(res);
-          this.getList();
-        });
+    deleteConta(id){
+      axios.delete(`http://localhost:3000/deleteContaAPagar/${id}`)
+      .then(res => {
+        console.log(res);
+        this.getList();
+      })
     }
   }
 };
