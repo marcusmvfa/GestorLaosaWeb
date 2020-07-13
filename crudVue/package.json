@@ -1,6 +1,6 @@
 {
   "name": "crudvue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Projeto de integração com Vue",
   "author": "marcusmvfa <marcuspa3@gmail.com>",
   "private": true,
@@ -21,7 +21,8 @@
     "moment": "^2.25.3",
     "vue": "^2.5.2",
     "vue-resource": "^1.5.1",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "webpack-cli": "^3.3.12"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -57,7 +58,7 @@
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^3.3.2",
-    "webpack-dev-server": "^3.1.11",
+    "webpack-dev-server": "^2.9.7",
     "webpack-merge": "^4.1.0"
   },
   "engines": {

@@ -200,7 +200,51 @@ app.delete('/deleteContaAPagar/:id', (req, res) => {
             res.sendStatus(200);
         })
 })
+//***************************************************************** */
 
+app.post('/salvaContaAReceber', (req, res) => {
+    db.collection('ContasAReceber').insertOne(req.body, (err, result) => {
+        if (err)
+            return console.log(err);
+
+        console.log('salvo no banco de dados');
+        res.sendStatus(200);
+    })
+})
+
+app.get('/listContasAReceber', (req, res) => {
+    db.collection('ContasAReceber').find().toArray((err, result) => {
+        if (err)
+            return console.log(err);
+        res.send(result);
+    })
+})
+
+app.get('/getContaAReceber/:id', (req, res) => {
+    db.collection('ContasAReceber').findOne({ _id: ObjectId(req.params.id) }, function (err, document) {
+        if (err)
+            console.log(err);
+        res.send(document);
+    })
+})
+
+app.put('/putContaAReceber/:id', (req, res) => {
+    db.collection('ContasAReceber').replaceOne({ _id: ObjectId(req.params.id) },
+        { conta: req.body.conta }
+    )
+    res.send("ts");
+})
+
+app.delete('/deleteContaAReceber/:id', (req, res) => {
+    db.collection('ContasAReceber').deleteOne({ _id: ObjectId(req.params.id) },
+        {},
+        (err, doc) => {
+            if (err)
+                res.send(err);
+            res.sendStatus(200);
+        })
+})
+//***************************************************************** */
 app.get('/getAllClientes', (req, res) => {
     db.collection('clientes').find().toArray((err, result) => {
         if (err)
