@@ -1,9 +1,9 @@
-<template>
-  <div class="container-fluid">
-    <div class="row">
+<template >
+    <div class="container-fluid">
+        <div class="row">
       <div class="col-lg-3">
-        <h3>Listagem Contas a Pagar</h3>
-        <router-link to="/formcontaapagar/0">
+        <h3>Listagem Estoque</h3>
+        <router-link to="/formestoque/0">
           <button class="btn btn-secondaty border border-gray float-left mb-3">
             <b-icon-plus></b-icon-plus>Novo Registro
           </button>
@@ -15,20 +15,20 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Descrição</th>
-            <th scope="col">Valor</th>
-            <th scope="col">Vencimento</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Qtd.</th>
+            <th scope="col">Disponível</th>
             <th scope="col">Ações</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(it, index) in lstContas" :key="it._id">
+          <tr v-for="(it, index) in lstItens" :key="it._id">
             <th scope="row">{{ index }}</th>
-            <td>{{ it.conta.categoria }}</td>
-            <td>{{ it.conta.valorConta }}</td>
-            <td>{{ dataFormatada(it.conta.dataVencimento) }}</td>
+            <td>{{ it.item.tipo }}</td>
+            <td>{{ it.item.qtd }}</td>
+            <td>{{ it.item.disponibilidade }}</td>
             <td>
-              <button class="btn btn-sm btn-primary mr-1" @click="editContaAPagar(it._id)">
+              <button class="btn btn-sm btn-primary mr-1" @click="editItemEstoque(it._id)">
                 <b-icon-pencil-square />
               </button>
               <button class="btn btn-sm btn-danger" @click="showDeleteConfirm(it._id)">
@@ -39,17 +39,15 @@
         </tbody>
       </table>
     </div>
-  </div>
+    </div>
 </template>
 <script>
 import axios from "axios";
-import moment from "moment";
-//import router from 'vue-router';
 export default {
-  name: "ContasPaga",
+    name: "listEstoque",
   data() {
     return {
-      lstContas: []
+      lstItens: []
     };
   },
   mounted() {
@@ -57,16 +55,15 @@ export default {
   },
   methods: {
     getList() {
-      axios.get("http://" + window.location.hostname + ":3000/listContasAPagar").then(response => {
-      this.lstContas = response.data;
-      console.log(response.data);
+      axios.get("http://"+ window.location.hostname + ":3000/getAllEstoque").then(response => {
+      this.lstItens = response.data;
     });
     },
     dataFormatada(data) {
       return moment(data).format("DD/MM/YYYY");
     },
-    editContaAPagar(id) {
-      this.$router.push({ path: `/formcontaapagar/${id}`, params: {id: id} });
+    editItemEstoque(id) {
+      this.$router.push({ path: `/formEstoque/${id}`, params: {id: id} });
     },
     showDeleteConfirm(id) {
       this.$bvModal.msgBoxConfirm('Você deseja realmente excluir este registro?', {
@@ -82,19 +79,19 @@ export default {
         })
           .then(value => {
             if(value == true)
-              this.deleteConta(id);
+              this.deleteItemEstoque(id);
           });
 
     },
-    deleteConta(id){
-      axios.delete(`http://` + window.location.hostname + `:3000/deleteContaAPagar/${id}`)
+    deleteItemEstoque(id){
+      axios.delete(`http://`+ window.location.hostname +`:3000/deleteItemEstoque/${id}`)
       .then(res => {
-        console.log(res);
         this.getList();
       })
     }
   }
-};
+}
 </script>
-<style>
+<style scoped>
+
 </style>

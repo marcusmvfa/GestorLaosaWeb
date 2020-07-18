@@ -9,10 +9,14 @@
               <li class="nav-item">Pedidos</li>
             </router-link>
             <router-link to="/contaspagar">
-            <li class="nav-item">Contas a Pagar</li>
+              <li class="nav-item">Contas a Pagar</li>
             </router-link>
-            <li class="nav-item"></li>
-            <li class="nav-item"></li>
+            <router-link to="/listClientes">
+              <li class="nav-item">Clientes</li>
+            </router-link>
+            <router-link to="/listEstoque">
+              <li class="nav-item">Estoque</li>
+            </router-link>
           </ul>
         </div>
       </nav>
@@ -24,12 +28,10 @@
 </template>
 
 <script>
-
 export default {
   name: "App",
   data() {
-    return {
-    };
+    return {};
   }
 };
 </script>
@@ -48,16 +50,16 @@ export default {
   background: #f5f4f2;
 }
 .sidebar-sticky {
-    position: -webkit-sticky;
-    position: sticky;
+  position: -webkit-sticky;
+  position: sticky;
 }
 .sidebar-sticky {
   position: relative;
-    top: 0;
-    height: calc(100vh - 48px);
-    padding-top: .5rem;
-    overflow-x: hidden;
-    overflow-y: auto;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .px-4 {
   padding-left: 1.5rem !important;

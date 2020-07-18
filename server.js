@@ -290,3 +290,49 @@ app.delete('/deleteCliente/:id', (req, res) => {
             res.send(doc);
         })
 })
+
+app.get('/getAllEstoque', (req, res) => {
+    db.collection('estoque').find().toArray((err, result) => {
+        if (err)
+            return console.log(err);
+
+        res.send(result);
+    })
+})
+
+app.post('/salvaItemEstoque', (req, res) => {
+    db.collection('estoque').insertOne(req.body, (err, result) => {
+        if (err)
+            return console.log(err);
+        res.sendStatus(200);
+    })
+})
+
+app.put('/putItemEstoque/:id', (req, res) => {
+    console.log(req.body.cliente);
+    db.collection('estoque').replaceOne({ _id: ObjectId(req.params.id) },
+        { item: req.body.item }
+    )
+
+    res.sendStatus(200);
+})
+
+app.get('/getItemEstoqueById/:id', (req, res) => {
+    db.collection('estoque').findOne({ _id: ObjectId(req.params.id) }, function (err, document) {
+        if (err)
+            return console.log(err);
+
+        res.send(document);
+    })
+})
+
+app.delete('/deleteItemEstoque/:id', (req, res) => {
+    db.collection('estoque').deleteOne({ _id: ObjectId(req.params.id) },
+        {},
+        (err, doc) => {
+            if (err)
+                res.send(err);
+
+            res.send(doc);
+        })
+})

@@ -242,7 +242,7 @@ export default {
     salvaPedido() {
       //console.log(JSON.stringify(Array.from(this.listaItens)));
       axios
-        .post("http://localhost:3000/salvaPedido", { pedido: this.model })
+        .post("http://" + window.location.hostname + ":3000/salvaPedido", { pedido: this.model })
         .then(function(response) {
           console.log(response);
         });

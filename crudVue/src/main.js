@@ -11,11 +11,11 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import {faPlus} from '@fortawesome/free-solid-svg-icons'
+import {faPlus, faArrowAltCircleLeft} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import moment from 'moment';
 
-library.add(faPlus)
+library.add(faPlus, faArrowAltCircleLeft)
  
 Vue.component('font-awesome-icon', FontAwesomeIcon )
 Vue.prototype.$http = axios;

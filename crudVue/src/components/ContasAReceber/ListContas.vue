@@ -42,6 +42,7 @@
     </div>
 </template>
 <script>
+import axios from "axios"
 export default {
     name: "listcontas",
   data() {
@@ -54,7 +55,7 @@ export default {
   },
   methods: {
     getList() {
-      axios.get("http://localhost:3000/listContasAReceber").then(response => {
+      axios.get("http://" + window.location.hostname + ":3000/listContasAReceber").then(response => {
       this.lstContas = response.data;
       console.log(response.data);
     });
@@ -84,7 +85,7 @@ export default {
 
     },
     deleteConta(id){
-      axios.delete(`http://localhost:3000/deleteContaAReceber/${id}`)
+      axios.delete(`http://` + window.location.hostname + `:3000/deleteContaAReceber/${id}`)
       .then(res => {
         console.log(res);
         this.getList();

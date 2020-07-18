@@ -4,9 +4,11 @@ import HelloWorld from '@/components/HelloWorld';
 import Pedido from '@/components/Pedido/Pedido';
 import CadastroPedido from '@/components/Pedido/CadastroPedido';
 import ContasPaga from '@/components/ContasaPagar/ContasPaga';
-import ListContas from '@/components/ContasAReceber/ListContas';
 import FormContasaPagar from '@/components/ContasaPagar/FormContasaPagar';
+import ListContas from '@/components/ContasAReceber/ListContas';
 import FormContasaReceber from '@/components/ContasAReceber/FormContasaReceber';
+import ListEstoque from '@/components/Estoque/ListEstoque';
+import FormEstoque from '@/components/Estoque/FormEstoque';
 
 Vue.use(Router)
 
@@ -47,6 +49,17 @@ export default new Router({
       path: '/formcontaareceber/:id',
       component: FormContasaReceber,
       title: 'Form Conta a Receber',
+      props: true
+    },
+    {
+      path: '/listEstoque',
+      component: ListEstoque,
+      title: 'Estoque de Materiais',
+    },
+    {
+      path: '/formestoque/:id',
+      component: FormEstoque,
+      title: 'Form Estoque',
       props: true
     }
   ]

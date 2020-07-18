@@ -138,7 +138,7 @@ export default {
   },
   methods: {
     fetchData(id) {
-      axios.get(`http://localhost:3000/getContaAReceber/${id}`).then(response => {
+      axios.get(`http://` + window.location.hostname + `:3000/getContaAReceber/${id}`).then(response => {
         console.log(response.data);
         this.conta = response.data.conta;
         this.id = response.data._id;
@@ -194,13 +194,13 @@ export default {
       this.conta.dataVencimento = new Date(this.campoData);
       if (this.id == null || this.id == undefined || this.id == "") {
         axios
-          .post("http://localhost:3000/salvaContaaReceber", { conta: this.conta })
+          .post("http://" + window.location.hostname + ":3000/salvaContaaReceber", { conta: this.conta })
           .then(function(response) {
             console.log(response);
           });
       } else {
         axios
-          .put(`http://localhost:3000/putContaAReceber/${this.id}`, {
+          .put(`http://` + window.location.hostname + `:3000/putContaAReceber/${this.id}`, {
             conta: this.conta
           })
           .then(function(response) {
