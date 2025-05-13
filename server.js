@@ -11,7 +11,7 @@ app.use(bodyParser());
 app.use(cors());
 app.set('view engine', 'ejs');
 
-const uri = 'mongodb+srv://marcus:te5skyrim@cluster0-clc5q.mongodb.net/test?retryWrites=true&w=majority';
+const uri = 'mongodb+srv:';
 var ObjectId = require('mongodb').ObjectID;
 // const client = MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true});
 // MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true}, (err, client) => {
